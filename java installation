@@ -1,0 +1,10 @@
+ubuntu@ip-172-31-31-13:~/ansible$ cat javaserver.yml
+- name: "install java in java server"
+  hosts: java
+  become: yes
+  tasks:
+   - name: install java
+     apt:
+       name: openjdk-17-jdk
+       state: present
+       update_cache: yes
