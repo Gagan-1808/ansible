@@ -1,0 +1,16 @@
+- name: Create abc.txt in /temp with message
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Ensure /temp directory exists
+      file:
+        path: /temp
+        state: directory
+
+    - name: Create abc.txt with content
+      copy:
+        dest: /temp/abc.txt
+        content: "helow this is test mssg\n"
+
+# to delete directory just update state = absent
