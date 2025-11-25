@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 4</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", Arial, sans-serif;
+            color: white;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff6b6b, #845ef7, #339af0);
+            background-size: 600% 600%;
+            animation: gradientShift 12s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating glowing particles */
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            animation: floatUp 8s infinite ease-in;
+            opacity: 0.7;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0.2; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0.9; }
+        }
+
+        /* 3D Rotating Card */
+        .box {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 45px 70px;
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            text-align: center;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+            animation: float 3s ease-in-out infinite;
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease;
+        }
+
+        .box:hover {
+            transform: rotateY(15deg) rotateX(15deg);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Typing effect */
+        .typing {
+            display: inline-block;
+            overflow: hidden;
+            border-right: 3px solid #fff;
+            white-space: nowrap;
+            animation: typing 4s steps(40) 1s forwards, blink 0.6s infinite;
+            font-size: 32px;
+            font-weight: 600;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            0% { border-color: transparent; }
+            50% { border-color: white; }
+            100% { border-color: transparent; }
+        }
+
+        /* Gagan clickable */
+        .name {
+            cursor: pointer;
+            font-weight: 700;
+            color: #ffe066;
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.14); }
+            100% { transform: scale(1); }
+        }
+
+        /* Button animation */
+        .btn {
+            margin-top: 25px;
+            padding: 15px 35px;
+            background: linear-gradient(45deg, #f06595, #845ef7);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.4s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .btn:hover {
+            transform: scale(1.15) rotateZ(3deg);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            background: linear-gradient(45deg, #51cf66, #339af0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating particles generation -->
+    <script>
+        for (let i = 0; i < 25; i++) {
+            let p = document.createElement("div");
+            p.classList.add("particle");
+            p.style.left = Math.random() * 100 + "vw";
+            p.style.animationDelay = Math.random() * 5 + "s";
+            p.style.animationDuration = 6 + Math.random() * 8 + "s";
+            document.body.appendChild(p);
+        }
+    </script>
+
+    <div class="box">
+        <div class="typing">
+            Welcome to Assignment4 by <span id="gagan" class="name">Gagan</span>
+        </div>
+
+        <button class="btn">Explore More</button>
+    </div>
+
+    <!-- Click to change background color -->
+    <script>
+        document.getElementById("gagan").onclick = function () {
+            const colors = [
+                "#ff6b6b", "#51cf66", "#339af0", "#fcc419",
+                "#845ef7", "#f06595", "#20c997", "#fab005"
+            ];
+
+            let c1 = colors[Math.floor(Math.random() * colors.length)];
+            let c2 = colors[Math.floor(Math.random() * colors.length)];
+            let c3 = colors[Math.floor(Math.random() * colors.length)];
+
+            document.body.style.background =
+                `linear-gradient(135deg, ${c1}, ${c2}, ${c3})`;
+
+            document.body.style.backgroundSize = "600% 600%";
+        };
+    </script>
+
+</body>
+</html>
