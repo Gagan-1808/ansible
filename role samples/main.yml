@@ -1,0 +1,11 @@
+- name: install java
+  hosts: test
+  become: yes
+  roles:
+    - java
+
+- name: install mysql
+  hosts: prod
+  become: yes
+  roles:
+    - mysql
