@@ -1,0 +1,21 @@
+- name: install nginx
+  hosts: nginx
+  become: yes
+  roles:
+    - nginx
+
+- name: file copy
+  hosts: nginx
+  become: yes
+  tasks:
+    - name: copy files
+      template:
+        src: index.html.j2
+        dest: /var/www/html/index.html
+      notify: restart nginx
+
+  handlers:
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
